@@ -5,3 +5,8 @@ export type ShoppingListItem = {
   completed: boolean;
   deleted: boolean;
 };
+
+export type NewShoppingListItem = Omit<
+  ShoppingListItem,
+  "id" | "completed" | "deleted"
+>;
