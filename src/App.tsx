@@ -13,6 +13,14 @@ export function App() {
     );
   }
 
+  function handleToggleCompleted(id: string) {
+    setItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, completed: !item.completed } : item,
+      ),
+    );
+  }
+
   const visibleItems = items.filter((item) => !item.deleted);
 
   return (
@@ -25,7 +33,11 @@ export function App() {
           <p className="mt-2 text-[var(--color-text-muted)]">
           </p>
         </header>
-        <ShoppingList items={visibleItems} onDeleteItem={handleDeleteItem} />
+        <ShoppingList
+          items={visibleItems}
+          onDeleteItem={handleDeleteItem}
+          onToggleCompleted={handleToggleCompleted}
+        />
       </section>
     </main>
   )

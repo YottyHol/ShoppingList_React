@@ -4,9 +4,14 @@ import { Trash2 } from "lucide-react";
 type ShoppingListProps = {
   items: ShoppingListItem[];
   onDeleteItem: (id: string) => void;
+  onToggleCompleted: (id: string) => void;
 };
 
-export function ShoppingList({ items, onDeleteItem }: ShoppingListProps) {
+export function ShoppingList({
+  items,
+  onDeleteItem,
+  onToggleCompleted,
+}: ShoppingListProps) {
   return (
     <section className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] p-4 shadow-sm md:p-6">
       {items.length === 0 ? (
@@ -26,8 +31,12 @@ export function ShoppingList({ items, onDeleteItem }: ShoppingListProps) {
               <input
                 type="checkbox"
                 checked={item.completed}
-                readOnly
-                aria-label={`Mark ${item.name} as complete`}
+                onChange={() => onToggleCompleted(item.id)}
+                aria-label={
+                  item.completed
+                    ? `Mark ${item.name} as not done`
+                    : `Mark ${item.name} as done`
+                }
                 className="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-accent)]"
               />
               <span
