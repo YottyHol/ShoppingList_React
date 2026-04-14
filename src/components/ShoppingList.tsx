@@ -1,4 +1,5 @@
 import type { ShoppingListItem } from "../types/ShoppingListItem";
+import { Trash2 } from "lucide-react";
 
 type ShoppingListProps = {
   items: ShoppingListItem[];
@@ -17,24 +18,46 @@ export function ShoppingList({ items }: ShoppingListProps) {
                 : "border-[var(--color-border)] bg-[var(--color-surface-muted)]"
             }`}
           >
-            <span
-              className={`font-medium ${
-                item.completed
-                  ? "text-[var(--color-text-disabled)]"
-                  : "text-[var(--color-text)]"
-              }`}
-            >
-              {item.name}
-            </span>
-            <span
-              className={`font-semibold ${
-                item.completed
-                  ? "text-[var(--color-text-disabled)]"
-                  : "text-[var(--color-accent)]"
-              }`}
-            >
-              £{item.price.toFixed(2)}
-            </span>
+            <div className="flex items-center gap-3">
+              <input
+                type="checkbox"
+                checked={item.completed}
+                readOnly
+                aria-label={`Mark ${item.name} as complete`}
+                className="h-4 w-4 rounded border-[var(--color-border)] accent-[var(--color-accent)]"
+              />
+              <span
+                className={`font-medium ${
+                  item.completed
+                    ? "text-[var(--color-text-disabled)]"
+                    : "text-[var(--color-text)]"
+                }`}
+              >
+                {item.name}
+              </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <span
+                className={`font-semibold ${
+                  item.completed
+                    ? "text-[var(--color-text-disabled)]"
+                    : "text-[var(--color-accent)]"
+                }`}
+              >
+                £{item.price.toFixed(2)}
+              </span>
+              <button
+                type="button"
+                aria-label={`Remove ${item.name}`}
+                className={`rounded p-1 transition-colors ${
+                  item.completed
+                    ? "text-[var(--color-text-disabled)]"
+                    : "text-[var(--color-text-muted)] hover:text-[var(--color-accent)]"
+                }`}
+              >
+                <Trash2 className="h-4 w-4" />
+              </button>
+            </div>
           </li>
         ))}
       </ul>
