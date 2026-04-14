@@ -3,4 +3,5 @@ export type ShoppingListItem = {
   name: string;
   price: number;
   completed: boolean;
+  deleted: boolean;
 };

@@ -1,7 +1,20 @@
+import { useState } from "react";
 import { ShoppingList } from "./components/ShoppingList";
 import { mockShoppingItems } from "./utils/mockShoppingItems";
 
 export function App() {
+  const [items, setItems] = useState(() => [...mockShoppingItems]);
+
+  function handleDeleteItem(id: string) {
+    setItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, deleted: true } : item,
+      ),
+    );
+  }
+
+  const visibleItems = items.filter((item) => !item.deleted);
+
   return (
     <main className="min-h-screen bg-[var(--color-page)] text-[var(--color-text)]">
       <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col p-6 md:p-10">
@@ -12,7 +25,7 @@ export function App() {
           <p className="mt-2 text-[var(--color-text-muted)]">
           </p>
         </header>
-        <ShoppingList items={mockShoppingItems} />
+        <ShoppingList items={visibleItems} onDeleteItem={handleDeleteItem} />
       </section>
     </main>
   )
