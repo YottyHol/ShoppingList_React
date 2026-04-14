@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Plus, Trash2 } from "lucide-react";
+import { Plus, ShoppingBasket } from "lucide-react";
 import { AddItemModal } from "./components/AddItemModal";
 import { Budget } from "./components/Budget";
 import { ShoppingList } from "./components/ShoppingList";
@@ -29,10 +29,11 @@ export function App() {
     <main className="min-h-screen bg-[var(--color-page)] text-[var(--color-text)]">
       <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col p-6 md:p-10">
         <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-          <div>
-            <h1 className="text-3xl font-bold tracking-tight text-[var(--color-accent)]">
-              My Shopping List   <Trash2 className="h-4 w-4" />
+          <div className="flex items-center gap-2 text-[var(--color-accent)]">
+            <h1 className="text-3xl font-bold tracking-tight ">
+              MyShopping  
             </h1>
+            <ShoppingBasket className="h-10 w-10" />
           </div>
           <button
             type="button"

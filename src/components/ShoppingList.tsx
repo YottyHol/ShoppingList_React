@@ -63,13 +63,13 @@ export function ShoppingList({
                 type="button"
                 aria-label={`Remove ${item.name}`}
                 onClick={() => onDeleteItem(item.id)}
-                className={`rounded p-1 transition-colors ${
+                className={`rounded p-1 transition-colors hover:text-[var(--color-danger)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-danger)]/45 focus-visible:ring-offset-2 ${
                   item.completed
-                    ? "text-[var(--color-text-disabled)]"
-                    : "text-[var(--color-text-muted)] hover:text-[var(--color-accent)]"
+                    ? "t ext-[var(--color-text-disabled)] focus-visible:ring-offset-[var(--color-surface-disabled)]"
+                    : "text-[var(--color-text-muted)] focus-visible:ring-offset-[var(--color-surface-muted)]"
                 }`}
               >
-                <Trash2 className="h-4 w-4" />
+                <Trash2 className="h-4.5 w-4.5" strokeWidth={2} />
               </button>
             </div>
           </li>

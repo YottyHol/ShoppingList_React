@@ -15,3 +15,11 @@
   --color-danger: #b91c1c;
   --color-border-danger: #dc2626;
 }
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
