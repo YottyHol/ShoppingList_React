@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Plus } from "lucide-react";
 import { AddItemModal } from "./components/AddItemModal";
+import { Budget } from "./components/Budget";
 import { ShoppingList } from "./components/ShoppingList";
 import type { NewShoppingListItem } from "./types/ShoppingListItem";
 import { mockShoppingItems } from "./utils/mockShoppingItems";
@@ -40,6 +41,10 @@ export function App() {
   }
 
   const visibleItems = items.filter((item) => !item.deleted);
+  const visibleListTotal = visibleItems.reduce(
+    (sum, item) => sum + item.price,
+    0,
+  );
 
   return (
     <main className="min-h-screen bg-[var(--color-page)] text-[var(--color-text)]">
@@ -64,11 +69,14 @@ export function App() {
           onClose={() => setAddModalOpen(false)}
           onAdd={handleAddItem}
         />
-        <ShoppingList
-          items={visibleItems}
-          onDeleteItem={handleDeleteItem}
-          onToggleCompleted={handleToggleCompleted}
-        />
+        <div className="grid gap-6 lg:grid-cols-[1fr_minmax(0,20rem)] lg:items-start">
+          <ShoppingList
+            items={visibleItems}
+            onDeleteItem={handleDeleteItem}
+            onToggleCompleted={handleToggleCompleted}
+          />
+          <Budget visibleListTotal={visibleListTotal} />
+        </div>
       </section>
     </main>
   )

@@ -12,4 +12,6 @@
   --color-text-disabled: #94a3b8;
   --color-accent: #080e66;
   --color-accent-soft: #dbeafe;
+  --color-danger: #b91c1c;
+  --color-border-danger: #dc2626;
 }
