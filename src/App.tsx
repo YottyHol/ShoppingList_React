@@ -1,42 +1,21 @@
 import { useState } from "react";
-import { Plus } from "lucide-react";
+import { Plus, Trash2 } from "lucide-react";
 import { AddItemModal } from "./components/AddItemModal";
 import { Budget } from "./components/Budget";
 import { ShoppingList } from "./components/ShoppingList";
+import { useShoppingListStore } from "./stores/shoppingListStore";
 import type { NewShoppingListItem } from "./types/ShoppingListItem";
-import { mockShoppingItems } from "./utils/mockShoppingItems";
 
 export function App() {
-  const [items, setItems] = useState(() => [...mockShoppingItems]);
   const [addModalOpen, setAddModalOpen] = useState(false);
 
-  function handleDeleteItem(id: string) {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, deleted: true } : item,
-      ),
-    );
-  }
-
-  function handleToggleCompleted(id: string) {
-    setItems((prev) =>
-      prev.map((item) =>
-        item.id === id ? { ...item, completed: !item.completed } : item,
-      ),
-    );
-  }
+  const items = useShoppingListStore((s) => s.items);
+  const addItem = useShoppingListStore((s) => s.addItem);
+  const deleteItem = useShoppingListStore((s) => s.deleteItem);
+  const toggleCompleted = useShoppingListStore((s) => s.toggleCompleted);
 
   function handleAddItem(payload: NewShoppingListItem) {
-    setItems((prev) => [
-      ...prev,
-      {
-        id: crypto.randomUUID(),
-        name: payload.name,
-        price: payload.price,
-        completed: false,
-        deleted: false,
-      },
-    ]);
+    addItem(payload);
     setAddModalOpen(false);
   }
 
@@ -52,7 +31,7 @@ export function App() {
         <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-3xl font-bold tracking-tight text-[var(--color-accent)]">
-              My Shopping List
+              My Shopping List   <Trash2 className="h-4 w-4" />
             </h1>
           </div>
           <button
@@ -72,8 +51,8 @@ export function App() {
         <div className="grid gap-6 lg:grid-cols-[1fr_minmax(0,20rem)] lg:items-start">
           <ShoppingList
             items={visibleItems}
-            onDeleteItem={handleDeleteItem}
-            onToggleCompleted={handleToggleCompleted}
+            onDeleteItem={deleteItem}
+            onToggleCompleted={toggleCompleted}
           />
           <Budget visibleListTotal={visibleListTotal} />
         </div>
