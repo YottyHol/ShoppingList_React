@@ -30,9 +30,7 @@ export function App() {
       <section className="mx-auto flex min-h-screen w-full max-w-5xl flex-col p-6 md:p-10">
         <header className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex items-center gap-2 text-[var(--color-accent)]">
-            <h1 className="text-3xl font-bold tracking-tight ">
-              MyShopping  
-            </h1>
+            <h1 className="text-3xl font-bold tracking-tight ">MyShopping</h1>
             <ShoppingBasket className="h-10 w-10" />
           </div>
           <button
@@ -59,5 +57,5 @@ export function App() {
         </div>
       </section>
     </main>
-  )
+  );
 }

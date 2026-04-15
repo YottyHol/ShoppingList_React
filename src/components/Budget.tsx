@@ -23,9 +23,7 @@ export function Budget({ visibleListTotal }: BudgetProps) {
       }`}
       aria-describedby={isOver ? statusId : undefined}
     >
-      <h2 className="text-lg font-semibold text-[var(--color-text)]">
-        Budget
-      </h2>
+      <h2 className="text-lg font-semibold text-[var(--color-text)]">Budget</h2>
       <div className="mt-4">
         <label
           htmlFor={fieldId}
@@ -47,7 +45,9 @@ export function Budget({ visibleListTotal }: BudgetProps) {
 
       <dl className="mt-4 space-y-2 text-sm">
         <div className="flex justify-between gap-4">
-          <dt className="text-[var(--color-text-muted)]">Current shopping list</dt>
+          <dt className="text-[var(--color-text-muted)]">
+            Current shopping list
+          </dt>
           <dd className="font-semibold tabular-nums text-[var(--color-text)]">
             £{visibleListTotal.toFixed(2)}
           </dd>

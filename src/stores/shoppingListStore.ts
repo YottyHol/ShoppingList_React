@@ -1,6 +1,9 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import type { NewShoppingListItem, ShoppingListItem } from "../types/ShoppingListItem";
+import type {
+  NewShoppingListItem,
+  ShoppingListItem,
+} from "../types/ShoppingListItem";
 import { mockShoppingItems } from "../utils/mockShoppingItems";
 
 type ShoppingListState = {

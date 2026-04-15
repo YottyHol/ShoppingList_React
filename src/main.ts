@@ -1,12 +1,12 @@
-import './style.css'
-import { createElement } from 'react'
-import { createRoot } from 'react-dom/client'
-import { App } from './App'
+import "./style.css";
+import { createElement } from "react";
+import { createRoot } from "react-dom/client";
+import { App } from "./App";
 
-const rootElement = document.querySelector<HTMLDivElement>('#app')
+const rootElement = document.querySelector<HTMLDivElement>("#app");
 
 if (!rootElement) {
-  throw new Error('Missing #app root element')
+  throw new Error("Missing #app root element");
 }
 
-createRoot(rootElement).render(createElement(App))
+createRoot(rootElement).render(createElement(App));
